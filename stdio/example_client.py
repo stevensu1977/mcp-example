@@ -14,16 +14,29 @@ async def run():
             # Initialize the connection
             await session.initialize()
 
-            # The example server only supports prompt primitives:
-            # List available prompts
-            prompts = await session.list_prompts()
+            # List available tools
+            tools = await session.list_tools()
+            print(tools)
+            
+            # If you want use ps aux check the server process , remove comments from the following 2 lines:
+            #import time
+            #time.sleep(10)
 
-            # Get a prompt
-            prompt = await session.get_prompt("example-prompt", arguments={"arg1": "value"})
-
-            print(prompts)
+            # Call a tool
+            result = await session.call_tool("fetch", {"url": "https://example.com"})
+            print(result)
             """
             Other example calls include:
+
+            # The example server only supports prompt primitives:
+            # List available prompts
+            # prompts = await session.list_prompts()
+            # print(prompts)
+
+            # # Get a prompt
+            # prompt = await session.get_prompt("example-prompt", arguments={"arg1": "value"})
+
+            # print(prompt)
 
             # List available resources
             resources = await session.list_resources()
